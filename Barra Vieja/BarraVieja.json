@@ -1,0 +1,46 @@
+{
+  "topicFilter": "skyalert/earthquake/anomalies",
+  "qos": 0,
+  "messages": [
+    {
+      "format": "json",
+      "topic": "skyalert/earthquake/anomalies",
+      "timestamp": 1774571760387,
+      "payload": {
+        "station_id": "AISensor002",
+        "event_type": "anomaly",
+        "message": "✅ ANOMALÍA FINALIZADA en 2026-03-27 00:36:00.090 (Duración: 2.85s, Max PGA: 47.40 Gals, PGA Final: 47.4 Gals)",
+        "pga_gals": 47.4,
+        "timestamp": "2026-03-27T00:36:00.091675+00:00",
+        "anomaly_active": false,
+        "coordinates": {
+          "lat": 16.846161,
+          "lon": -99.797058,
+          "elev": 0.0
+        },
+        "location_name": "Barra Vieja, Gro."
+      },
+      "qos": 0
+    },
+    {
+      "format": "json",
+      "topic": "skyalert/earthquake/anomalies",
+      "timestamp": 1774571757823,
+      "payload": {
+        "station_id": "AISensor002",
+        "event_type": "anomaly",
+        "message": "ANOMALIA DETECTADA + IA ACTIVADA en 2026-03-27 00:35:57.242 (PGA: 16.9 Gals)",
+        "pga_gals": 16.87,
+        "timestamp": "2026-03-27T00:35:57.242987+00:00",
+        "anomaly_active": true,
+        "coordinates": {
+          "lat": 16.846161,
+          "lon": -99.797058,
+          "elev": 0.0
+        },
+        "location_name": "Barra Vieja, Gro."
+      },
+      "qos": 0
+    }
+  ]
+}
