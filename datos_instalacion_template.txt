@@ -1,0 +1,101 @@
+# ============================================================
+#  DATOS DE INSTALACIÓN — SkyAlert RED · AI Station
+#  Copiar este archivo a la carpeta del nuevo sitio y
+#  llenar todos los campos antes de ejecutar generar_tex.py
+# ============================================================
+
+# ── SITIO ────────────────────────────────────────────────────
+nombre_sitio        =
+ciudad_estado       =
+direccion           =
+google_maps_url     =
+latitud             =
+longitud            =
+altitud             =
+zona_sismica        =
+
+# ── ESTACIÓN ─────────────────────────────────────────────────
+station_id          =
+modelo_sensor       =
+fecha_instalacion   =
+folio               =
+reporte_id          =
+
+# ── AUTOR / EQUIPO ──────────────────────────────────────────
+autor               =
+apoyo               =
+
+# ── CONTACTOS EN SITIO ──────────────────────────────────────
+contacto1_nombre    =
+contacto1_cargo     =
+contacto1_telefono  =
+
+contacto2_nombre    =
+contacto2_cargo     =
+contacto2_telefono  =
+
+# ── EQUIPOS INSTALADOS ──────────────────────────────────────
+# Formato: dispositivo | modelo | id_sn | ubicacion | propiedad | estado
+# Estados: Activo, N/A, Pendiente, Fallo
+equipo1 = GPU NVIDIA | Jetson Orin Nano |  |  | SkyAlert | Activo
+equipo2 = Sensor Sísmico | ASExplorer E-C111G |  |  | SkyAlert | Activo
+equipo3 = Módem / Router |  |  |  | SkyAlert | Activo
+equipo4 = Antena Alta Ganancia | Receptora exterior |  |  | SkyAlert | Activo
+equipo5 = Regulador de Voltaje |  |  |  | SkyAlert | Activo
+equipo6 = Bocina / Altavoz | Ninguna | -- | N/A | -- | N/A
+equipo7 = UPS / Batería | Ninguna | -- | N/A | -- | N/A
+
+# ── KPIs ─────────────────────────────────────────────────────
+dispositivos_activos = 5
+conectividad         = 4G
+resolucion_adc       = 24 bit
+latencia             = < 0.1s
+
+# ── DESCRIPCIONES DE FOTOS ──────────────────────────────────
+img2_caption  =
+img3_caption  =
+img4_caption  =
+img5_caption  =
+img6_caption  =
+img7_caption  =
+img8_caption  =
+img9_caption  =
+img10_caption =
+img12_caption =
+
+# ── PRUEBA MQTT ──────────────────────────────────────────────
+mqtt_broker          = xxxxxxxxxx.iot.us-east-1.amazonaws.com
+mqtt_mensajes        = 4 / 4 (100%)
+
+# ── OBSERVACIONES ────────────────────────────────────────────
+observacion_general  =
+observacion_1        =
+observacion_2        =
+observacion_3        =
+observacion_4        =
+
+# ── PRUEBAS REALIZADAS ──────────────────────────────────────
+# Formato: nombre_prueba | resultado | observacion
+# Resultados: PASS, FAIL, Pendiente
+prueba1 = Encendido y arranque del sensor | PASS | Arranque sin errores
+prueba2 = Conectividad a internet | PASS | Señal estable
+prueba3 = Transmisión de señal sísmica | PASS | Latencia < 0.1 s
+prueba4 = Barrenado para gabinetes | PASS | Gabinetes fijados
+prueba5 = Detección de anomalía (AI Station) | PASS | IA_output, Zc, PGA
+prueba6 = Envío MQTT a AWS IoT Core | PASS | 4/4 mensajes (100%)
+prueba7 = Sincronización de reloj GPS | PASS | Drift < 10 ms
+prueba8 = Estándares SkyAlert 2026 | PASS | Criterios verificados
+
+# ── FIRMAS ───────────────────────────────────────────────────
+firma_instalador_nombre =
+firma_instalador_cargo  =
+firma_instalador_fecha  =
+
+firma_aliado_nombre     =
+firma_aliado_cargo      =
+firma_aliado_fecha      =
+
+# ── APOYO EN INSTALACIÓN ────────────────────────────────────
+# Formato: nombre | cargo | fecha
+apoyo1 =
+apoyo2 =

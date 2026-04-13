@@ -1,0 +1,296 @@
+\documentclass{skyalert-report}
+
+%% ══════════════════════════════════════════════════════════════════════════
+%%  DATOS DE LA INSTALACIÓN — <<nombre_sitio>>
+%% ══════════════════════════════════════════════════════════════════════════
+
+\sitename{<<nombre_sitio>>}
+\sitelocation{<<ciudad_estado>>}
+\siteaddress{<<direccion>>}
+\sitemaps{<<google_maps_url>>}
+\sitelat{<<latitud>>}
+\sitelong{<<longitud>>}
+\sitealt{<<altitud>>}
+\seismiczone{<<zona_sismica>>}
+
+\stationid{<<station_id>>}
+\sensormodel{<<modelo_sensor>>}
+\installdate{<<fecha_instalacion>>}
+\folio{<<folio>>}
+\reportid{<<reporte_id>>}
+
+\authorname{<<autor>>}
+\supportnames{<<apoyo>>}
+\coverlogo{1}
+
+%% ── Contactos en sitio ────────────────────────────────────────────────────
+\newcommand{\contactoA}{<<contacto1_nombre>>\newline{\small <<contacto1_cargo>>}\newline{\small <<contacto1_telefono>>}}
+\newcommand{\contactoB}{<<contacto2_nombre>>\newline{\small <<contacto2_cargo>>}\newline{\small <<contacto2_telefono>>}}
+
+%% ══════════════════════════════════════════════════════════════════════════
+\begin{document}
+
+%% ===== PÁG 1: PORTADA =====================================================
+\makecover
+
+%% ===== PÁG 2: DATOS GENERALES =============================================
+\setheadertext{Datos Generales}
+\setfootertext{<<station_id>> \textperiodcentered{} <<footer_ubicacion>> \textperiodcentered{} <<footer_fecha>>}
+
+\sectionhead{Datos Generales de la Instalaci\'on}
+
+\begin{card}
+\begin{tabular}{@{}p{0.46\textwidth}p{0.46\textwidth}@{}}
+\datafield{Nombre del Sitio}{<<nombre_sitio>>}&
+\datafield{Fecha de Instalaci\'on}{<<fecha_instalacion>>}\\
+\datafield{Folio / ID de Reporte}{<<reporte_id>>}&
+\datafield{Zona S\'ismica}{<<zona_sismica>>}\\
+\end{tabular}%
+
+\begin{tabular}{@{}p{0.95\textwidth}@{}}
+\datafield{Direcci\'on}{<<direccion>>}\\
+\datafield{Google Maps}{\url{<<google_maps_url>>}}\\
+\end{tabular}%
+
+\begin{tabular}{@{}p{0.30\textwidth}p{0.30\textwidth}p{0.30\textwidth}@{}}
+\datafield{Latitud}{<<latitud>>}&
+\datafield{Longitud}{<<longitud>>}&
+\datafield{Altitud}{<<altitud>>}\\
+\end{tabular}%
+
+\begin{tabular}{@{}p{0.46\textwidth}p{0.46\textwidth}@{}}
+\datafield{Contacto en Sitio (1)}{\contactoA}&
+\datafield{Contacto en Sitio (2)}{\contactoB}\\
+\end{tabular}%
+\end{card}
+
+\sectionhead{Detalles de la Estaci\'on S\'ismica}
+
+\begin{tcolorbox}[
+  enhanced,colback=tablebg,colframe=divider,boxrule=0.4pt,
+  arc=4pt,left=0pt,right=0pt,top=0pt,bottom=0pt,
+  shadow={0.4mm}{-0.4mm}{0mm}{black!8}
+]
+{\footnotesize\setlength{\tabcolsep}{3pt}\raggedright
+\begin{tabular}{@{\hspace{4pt}}
+  >{\bfseries\raggedright\arraybackslash}p{0.20\textwidth}
+  >{\raggedright\arraybackslash}p{0.15\textwidth}
+  >{\raggedright\arraybackslash}p{0.08\textwidth}
+  >{\raggedright\arraybackslash}p{0.17\textwidth}
+  >{\raggedright\arraybackslash}p{0.11\textwidth}
+  >{\raggedright\arraybackslash}p{0.12\textwidth}@{\hspace{4pt}}}
+\rowcolor{darkbg}
+\thead{Dispositivo}&
+\thead{Modelo}&
+\thead{ID/SN}&
+\thead{Ubicaci\'on}&
+\thead{Propiedad}&
+\thead{Estado}\\
+<<equipos_rows>>
+\end{tabular}}
+\end{tcolorbox}
+
+\vspace{5mm}
+\noindent
+\begin{minipage}[t]{0.24\textwidth}\kpiblock{\faIcon{microchip}}{<<dispositivos_activos>>}{Dispositivos Activos}\end{minipage}\hfill
+\begin{minipage}[t]{0.24\textwidth}\kpiblock{\faIcon{wifi}}{<<conectividad>>}{Conectividad}\end{minipage}\hfill
+\begin{minipage}[t]{0.24\textwidth}\kpiblock{\faIcon{shield-alt}}{<<resolucion_adc>>}{Resoluci\'on ADC}\end{minipage}\hfill
+\begin{minipage}[t]{0.24\textwidth}\kpiblock{\faIcon{clock}}{<<latencia>>}{Latencia}\end{minipage}
+
+\newpage
+
+%% ===== PÁG 3: EVIDENCIA FOTOGRÁFICA =======================================
+\setheadertext{Evidencia Fotogr\'afica}
+
+\sectionhead{Evidencia Fotogr\'afica de la Instalaci\'on}
+
+\subsectionlabel{Ubicaci\'on del Sitio}
+
+\noindent
+\begin{minipage}[t]{0.32\textwidth}
+\photoframe{2}{<<img2_caption>>}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.32\textwidth}
+\photoframe{3}{<<img3_caption>>}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.32\textwidth}
+\photoframe{4}{<<img4_caption>>}
+\end{minipage}
+
+\vspace{4mm}
+\subsectionlabel{Instalaci\'on de la Estaci\'on}
+
+\noindent
+\begin{minipage}[t]{0.32\textwidth}
+\photoframe{5}{<<img5_caption>>}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.32\textwidth}
+\photoframe{6}{<<img6_caption>>}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.32\textwidth}
+\photoframe{7}{<<img7_caption>>}
+\end{minipage}
+
+\vspace{3mm}\noindent
+\begin{minipage}[t]{0.32\textwidth}
+\photoframe{8}{<<img8_caption>>}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.32\textwidth}
+\photoframe{9}{<<img9_caption>>}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.32\textwidth}
+\photoframe{10}{<<img10_caption>>}
+\end{minipage}
+
+\vspace{3mm}
+\sectionhead{Apoyo en Instalaci\'on}
+
+\begin{card}
+\begin{tabular}{@{}p{0.30\textwidth}p{0.30\textwidth}p{0.30\textwidth}@{}}
+<<apoyo_rows>>
+\end{tabular}%
+\end{card}
+
+\newpage
+
+%% ===== PÁG 4: VALIDACIÓN DE SEÑAL =========================================
+\setheadertext{Validaci\'on de Se\~nal}
+
+\sectionhead{Validaci\'on de Se\~nal S\'ismica en Tiempo Real}
+
+\begin{tcolorbox}[
+  enhanced,colback=tablebg,colframe=divider,boxrule=0.4pt,
+  arc=4pt,left=0pt,right=0pt,top=0pt,bottom=0pt,
+  shadow={0.4mm}{-0.4mm}{0mm}{black!8}
+]
+{\small\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{\hspace{4pt}}
+  >{\bfseries\raggedright\arraybackslash}p{0.42\textwidth}
+  >{\raggedright\arraybackslash}p{0.28\textwidth}
+  >{\raggedright\arraybackslash}p{0.16\textwidth}@{\hspace{4pt}}}
+\rowcolor{darkbg}
+\thead{Par\'ametro}&
+\thead{Valor}&
+\thead{Estado}\\
+\rowcolor{white}
+Nivel de ruido s\'ismico (RMS)&%
+\begin{tikzpicture}[baseline=1.5pt]
+  \fill[divider,rounded corners=1pt](0,0)rectangle(2.2cm,5pt);
+  \fill[greenaccent,rounded corners=1pt](0,0)rectangle(0.66cm,5pt);
+\end{tikzpicture}&\chipok{Aceptable}\\
+\rowcolor{tablerow}
+Frecuencia de muestreo&100 sps&\chipok{OK}\\
+\rowcolor{white}
+Latencia de transmisi\'on&< 0.1 s&\chipok{OK}\\
+\rowcolor{tablerow}
+Uptime de conexi\'on&99.8\%&\chipok{OK}\\
+\rowcolor{white}
+SNR (Signal-to-Noise Ratio)&--&\chipwarn{Pendiente}\\
+\rowcolor{tablerow}
+Resoluci\'on del ADC&24 bits&\chipok{OK}\\
+\rowcolor{white}
+Drift de reloj (GPS sync)&< 1 ms&\chipok{OK}\\
+\end{tabular}}
+\end{tcolorbox}
+
+\vspace{5mm}
+\subsectionlabel{Medici\'on de Ruido S\'ismico en Sitio}
+
+\begin{center}
+\includegraphics[width=\textwidth]{11}\\[2mm]
+{\small\itshape\textcolor{steel}{Formas de onda de aceleraci\'on registradas durante la medici\'on de ruido s\'ismico en sitio.}}
+\end{center}
+
+\newpage
+
+%% ===== PÁG 5: PRUEBA MQTT =================================================
+\setheadertext{Prueba MQTT}
+
+\sectionhead{Prueba MQTT -- Mensajes de Anomal\'ia a AWS}
+
+\begin{tcolorbox}[
+  enhanced,colback=mqttbg,colframe=mqttframe,boxrule=0.5pt,
+  arc=4pt,left=8pt,right=8pt,top=6pt,bottom=6pt,
+  shadow={0.5mm}{-0.5mm}{0mm}{black!20}
+]
+{\ttfamily\small\textcolor{mqttgreen}{\faIcon{terminal}\enspace skyalert-mqtt-client}}%
+\hfill
+\begin{tikzpicture}[baseline=1pt]
+  \node[fill=mqttgreen!20!mqttbg,rounded corners=2pt,inner xsep=4pt,inner ysep=1.5pt]{%
+    \bfseries\tiny\textcolor{mqttgreen}{\textbullet{} CONNECTED}%
+  };
+\end{tikzpicture}\\[3mm]
+{\ttfamily\footnotesize
+\textcolor{mqttcyan}{broker}\hspace{10mm}\textcolor{mqttdim}{<<mqtt_broker>>}\\
+\textcolor{mqttcyan}{topic}\hspace{11.5mm}\textcolor{mqttdim}{skyalert/earthquake/anomalies}\\
+\textcolor{mqttcyan}{mensajes}\hspace{6mm}\textcolor{mqttdim}{<<mqtt_mensajes>>}\hspace{3mm}\textcolor{mqttgreen}{\faIcon{check-circle}\enspace PASS -- Todos los mensajes entregados}\\[3mm]
+\textcolor{mqttframe}{\% PAYLOAD ANOMAL\'IA DETECTADA}\\
+\textcolor{mqttdim}{\{}\\
+\hspace{4mm}\textcolor{mqttcyan}{"station\_id":}\hspace{2mm}\textcolor{mqttcyan!70!white}{"<<mqtt_station_id>>"},\\
+\hspace{4mm}\textcolor{mqttcyan}{"message":}\hspace{4mm}\textcolor{mqttcyan!70!white}{"<<mqtt_message>>"},\\
+\hspace{4mm}\textcolor{mqttcyan}{"pga\_gals":}\hspace{3mm}\textcolor{accent}{<<mqtt_pga>>,}%
+\hspace{3mm}\textcolor{mqttcyan}{"anomaly\_active":}\hspace{1mm}\textcolor{amberdark}{<<mqtt_anomaly_active>>},\\
+\hspace{4mm}\textcolor{mqttcyan}{"timestamp":}\hspace{2mm}\textcolor{mqttcyan!70!white}{"<<mqtt_timestamp>>"},\\
+\hspace{4mm}\textcolor{mqttcyan}{"location\_name":}\textcolor{mqttcyan!70!white}{"<<mqtt_location>>"}\\
+\textcolor{mqttdim}{\}}
+}
+\end{tcolorbox}
+
+\vspace{5mm}
+\subsectionlabel{Confirmaci\'on en AWS}
+
+\begin{center}
+\includegraphics[width=0.5\textwidth]{12}\\[2mm]
+{\small\itshape\textcolor{steel}{Confirmaci\'on de recepci\'on de mensajes de anomal\'ia s\'ismica en los servicios AWS.}}
+\end{center}
+
+\newpage
+
+%% ===== PÁG 6: OBSERVACIONES Y FIRMAS ======================================
+\setheadertext{Observaciones y Aceptaci\'on}
+
+\sectionhead{Comentarios y Observaciones}
+
+\begin{obsbox}
+\justifying
+<<observacion_general>>
+\end{obsbox}
+
+\vspace{2mm}
+\begin{enumerate}[leftmargin=*,label=\textbf{\textcolor{skyred}{\arabic*.}},itemsep=1pt]
+<<observaciones_items>>
+\end{enumerate}
+
+\vspace{3mm}
+\sectionhead{Resumen de Pruebas Realizadas}
+
+\begin{tcolorbox}[
+  enhanced,colback=tablebg,colframe=divider,boxrule=0.4pt,
+  arc=4pt,left=0pt,right=0pt,top=0pt,bottom=0pt,
+  shadow={0.4mm}{-0.4mm}{0mm}{black!8}
+]
+{\small\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{\hspace{4pt}}
+  >{\bfseries\raggedright\arraybackslash}p{0.44\textwidth}
+  >{\raggedright\arraybackslash}p{0.14\textwidth}
+  >{\raggedright\arraybackslash}p{0.26\textwidth}@{\hspace{4pt}}}
+\rowcolor{darkbg}
+\thead{Prueba}&
+\thead{Resultado}&
+\thead{Observaci\'on}\\
+<<pruebas_rows>>
+\end{tabular}}
+\end{tcolorbox}
+
+\vspace{4mm}
+\sectionhead{Verificaci\'on y Aceptaci\'on}
+
+\noindent
+\begin{minipage}[t]{0.48\textwidth}
+\signblock{Encargado de la Instalaci\'on}{<<firma_instalador_nombre>>}{<<firma_instalador_cargo>>}{<<firma_instalador_fecha>>}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.48\textwidth}
+\signblock{Encargado del Sitio (Aliado)}{<<firma_aliado_nombre>>}{<<firma_aliado_cargo>>}{<<firma_aliado_fecha>>}
+\end{minipage}
+
+\end{document}

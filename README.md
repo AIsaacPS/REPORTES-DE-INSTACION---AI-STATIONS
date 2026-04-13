@@ -7,29 +7,59 @@ Guía para generar nuevos reportes de instalación de estaciones sísmicas intel
 ```
 REPORTES DE INSTALACION/
 ├── README.md
+├── generar_tex.py                ← Script generador de .tex
+├── template.tex                  ← Plantilla LaTeX con placeholders
+├── datos_instalacion_template.txt ← Template limpio para nuevos sitios
 ├── Barra Vieja/
-│   ├── skyalert-report.cls       ← Clase LaTeX (NO modificar)
-│   ├── barravieja.tex            ← Reporte (datos + contenido)
-│   ├── barravieja.pdf            ← PDF generado
+│   ├── *.txt                     ← Datos del sitio (llenar primero)
+│   ├── skyalert-report.cls       ← Clase LaTeX
+│   ├── barravieja.tex            ← Reporte generado
+│   ├── barravieja.pdf            ← PDF compilado
 │   ├── barravieja_img1..12       ← Imágenes (png/jpeg)
 │   ├── plot_ruido_sismico.py     ← Script para generar img11
 │   ├── *.mseed                   ← 3 archivos MiniSEED (ENE, ENN, ENZ)
-│   └── mqtt_test.json            ← JSON de prueba MQTT (opcional)
-└── Acapulco Palmeiras/
+│   └── *.json                    ← JSON de prueba MQTT
+└── Acapulco Cyti-Uagro/
+    ├── *.txt
     ├── skyalert-report.cls
-    ├── palmeiras.tex
-    ├── palmeiras.pdf
-    ├── palmeiras_img1..12
+    ├── acapulcocytiuagro.tex
+    ├── acapulcocytiuagro.pdf
+    ├── 1..12 (png/jpeg)
     ├── plot_ruido_sismico.py
     ├── *.mseed
-    └── mqtt_test.json
+    └── *.json
 ```
 
 ## Cómo crear un nuevo reporte
 
 ### 1. Crear la carpeta
 
-Duplicar cualquier carpeta existente (ej. `Barra Vieja/`) y renombrarla con el nombre del nuevo sitio.
+1. Crear una nueva carpeta con el nombre del sitio
+2. Copiar `datos_instalacion_template.txt` dentro de la carpeta y renombrarlo (ej. `NombreSitio.txt`)
+3. Copiar `skyalert-report.cls` y `plot_ruido_sismico.py` de cualquier carpeta existente
+
+### 1.5. Llenar el `.txt` de datos
+
+Abrir la copia de `datos_instalacion_template.txt` y llenar todos los campos. El script se encarga de:
+
+- Escapar caracteres especiales a LaTeX (acentos, ñ, &, etc.)
+- Formatear latitud/longitud con grados y N/W
+- Formatear altitud con msnm
+- Leer el JSON MQTT automáticamente
+- Generar filas de equipos, pruebas, observaciones y apoyo
+
+Campos del `.txt`:
+
+- Datos del sitio (nombre, dirección, coordenadas, zona sísmica)
+- Datos de la estación (ID, modelo, fecha, folio)
+- Contactos en sitio
+- Equipos instalados (formato: `dispositivo | modelo | id_sn | ubicacion | propiedad | estado`)
+- KPIs
+- Descripciones de fotos (captions)
+- Datos de prueba MQTT
+- Observaciones
+- Pruebas realizadas (formato: `nombre | resultado | observacion`)
+- Firmas y apoyo en instalación
 
 ### 2. Preparar insumos
 
@@ -90,148 +120,49 @@ pip install obspy numpy matplotlib
 - La línea de `fig.suptitle(...)` con el nombre del nuevo sitio
 - La línea de `out_path` con el nombre de salida deseado (ej. `ruido_sismico_nuevo_sitio.png`)
 
-### 3. Editar el archivo `.tex`
+### 3. Generar el archivo `.tex` (automático)
 
-Abrir el `.tex` y modificar **solo** las secciones indicadas abajo. Los caracteres especiales en español deben escaparse con la sintaxis de LaTeX.
+Una vez llenado `datos_instalacion.txt` y con el archivo JSON MQTT en la carpeta, ejecutar el script generador:
 
-#### Caracteres especiales (obligatorio)
+```bash
+cd "REPORTES DE INSTALACION/"
+python3 generar_tex.py "Nombre del Sitio" [prefijo]
+```
 
-| Carácter | Escribir en LaTeX |
-|----------|-------------------|
-| á | `\'a` |
-| é | `\'e` |
-| í | `\'i` |
-| ó | `\'o` |
-| ú | `\'u` |
+- `Nombre del Sitio` — carpeta del sitio (ej. `"Acapulco Cyti-Uagro"`)
+- `prefijo` — (opcional) prefijo para imágenes. Si no se da, se genera automáticamente del nombre de la carpeta (ej. `acapulcocytiuagro`)
+
+El script:
+1. Lee `datos_instalacion.txt` de la carpeta del sitio
+2. Lee el primer archivo `.json` de la carpeta (datos MQTT)
+3. Aplica el escapado LaTeX automáticamente (acentos, ñ, &, etc.)
+4. Genera las filas de equipos, pruebas, observaciones y apoyo
+5. Produce el archivo `{prefijo}.tex` listo para compilar
+
+**Ejemplo:**
+
+```bash
+python3 generar_tex.py "Acapulco Cyti-Uagro"
+# → Genera: Acapulco Cyti-Uagro/acapulcocytiuagro.tex
+```
+
+**Archivos del generador** (en la raíz de `REPORTES DE INSTALACION/`):
+- `generar_tex.py` — script principal
+- `template.tex` — plantilla LaTeX con placeholders `{{campo}}`
+
+> **Nota:** Después de generar el `.tex`, se puede revisar y ajustar manualmente si se necesitan cambios puntuales (ej. `\vspace`, tamaño de fuente en tablas).
+
+#### Edición manual (alternativa)
+
+Si se prefiere no usar el generador, se puede editar el `.tex` directamente. Los caracteres especiales en español deben escaparse manualmente:
+
+| Carácter | LaTeX |
+|----------|-------|
+| á é í ó ú | `\'a \'e \'i \'o \'u` |
 | ñ | `\~n` |
 | ü | `\"u` |
 | ° | `\textdegree{}` |
 | & | `\&` |
-
-#### Sección: Metadata (preámbulo)
-
-```latex
-\sitename{Nombre del Sitio}              % Nombre del hotel/condominio/empresa
-\sitelocation{Ciudad, Estado}             % Ej: Acapulco, Guerrero
-\siteaddress{Direcci\'on completa}        % Dirección con código postal
-\sitemaps{https://maps.app.goo.gl/...}   % Link de Google Maps
-\sitelat{16.768045\textdegree{} N}        % Latitud
-\sitelong{-99.785777\textdegree{} W}      % Longitud
-\sitealt{0 m}                             % Altitud sobre nivel del mar
-\seismiczone{Tipo D -- Alta Sismicidad}   % Zona sísmica (A, B, C o D)
-
-\stationid{AISensorXXX}                   % ID de la estación
-\sensormodel{AS-Explorer}                 % Modelo del sensor
-\installdate{DD de Mes de AAAA}           % Fecha de instalación
-\folio{Ruta-Estado-XX-AAAA}               % Folio de ruta
-\reportid{AAAA-Edo-XXX}                   % ID del reporte
-
-\authorname{Ing. Isaac P\'erez}           % Autor del reporte
-\supportnames{Jorge Giles \& Omar Barrag\'an}  % Apoyo
-\coverlogo{prefijo_img1}                  % Logo (sin extensión)
-```
-
-#### Sección: Contactos en sitio
-
-```latex
-\newcommand{\contactoA}{Nombre Completo\newline{\small Cargo -- +52 1 XXX XXX XXXX}}
-\newcommand{\contactoB}{Nombre Completo\newline{\small Cargo -- +52 1 XXX XXX XXXX}}
-```
-
-#### Sección: Header y footer (en cada página después de `\newpage`)
-
-```latex
-\setheadertext{Nombre de la Secci\'on}
-\setfootertext{AISensorXXX \textperiodcentered{} Ciudad, Edo. \textperiodcentered{} DD-Mes-AAAA}
-```
-
-#### Sección: Tabla de equipos
-
-Modificar las filas de la tabla según los dispositivos instalados. Cada fila tiene:
-
-```latex
-\rowcolor{white}  % o \rowcolor{tablerow} para filas alternadas
-Nombre del Dispositivo & Modelo & ID/SN & Ubicaci\'on & Propiedad & \chipok{Activo}\\
-```
-
-Valores de propiedad: `SkyAlert`, `Aliado`, o `--`.
-
-Valores de estado disponibles:
-- `\chipok{Activo}` — verde
-- `\chipna{N/A}` — gris
-- `\chipwarn{Pendiente}` — amarillo
-- `\chipfail{Fallo}` — rojo
-
-Si la estación **no tiene sensor secundario**, eliminar esa fila y cambiar el KPI de dispositivos activos de `6` a `5`.
-
-#### Sección: Fotos
-
-Cambiar los nombres de archivo y las descripciones (captions):
-
-```latex
-\photoframe{prefijo_imgN}{Descripci\'on de la foto}
-```
-
-#### Sección: MQTT payload
-
-Esta sección se llena a partir del **archivo JSON de la prueba MQTT** realizada en sitio. Dicho archivo es generado automáticamente por el sistema al ejecutar la prueba de envío de anomalías a AWS IoT Core.
-
-**Insumo requerido:** archivo `.json` con el payload de la prueba (ej. `mqtt_test_AISensor001.json`). Se recomienda guardarlo dentro de la carpeta del reporte como referencia.
-
-Ejemplo de JSON de entrada:
-
-```json
-{
-  "station_id": "AISensor001",
-  "message": "ANOMALIA DETECTADA + IA ACTIVADA en 2026-03-27 16:45:36 (PGA: 2.5 Gals)",
-  "pga_gals": 2.54,
-  "anomaly_active": true,
-  "timestamp": "2026-03-27T16:45:36.045826+00:00",
-  "location_name": "Acapulco, Gro."
-}
-```
-
-Mapeo de campos JSON → LaTeX:
-
-| Campo JSON | Dónde va en el `.tex` |
-|---|---|
-| `station_id` | `"station\_id": "AISensorXXX"` |
-| `message` | `"message": "ANOMALIA DETECTADA + IA ACTIVADA en FECHA (PGA: X.X Gals)"` |
-| `pga_gals` | `\textcolor{accent}{VALOR,}` |
-| `anomaly_active` | `\textcolor{amberdark}{true}` o `false` |
-| `timestamp` | `"timestamp": "VALOR"` |
-| `location_name` | `"location\_name": "Ciudad, Edo."` |
-
-También actualizar la línea del broker (siempre es `xxxxxxxxxx.iot.us-east-1.amazonaws.com`) y la cantidad de mensajes entregados (ej. `4 / 4 (100%)`).
-
-> **Nota:** Los guiones bajos en los nombres de campo JSON deben escaparse como `\_` en LaTeX.
-
-#### Sección: Observaciones
-
-Reescribir el contenido del `obsbox` y la lista enumerada según las condiciones específicas del sitio.
-
-#### Sección: Pruebas realizadas
-
-Modificar observaciones de cada prueba si difieren del estándar. Si se realizó medición de ruido sísmico, incluir el valor RMS.
-
-#### Sección: Verificación y aceptación
-
-```latex
-\signblock{Encargado de la Instalaci\'on}{Ing. Isaac P\'erez}{Cargo}{DD / MM / AAAA}
-\signblock{Encargado del Sitio (Aliado)}{Nombre del Contacto}{Cargo}{DD / MM / AAAA}
-```
-
-La tabla derecha debe llevar los datos del **contacto principal del sitio** (contactoA).
-
-#### Sección: Apoyo en instalación
-
-Agregar una fila por cada persona que apoyó:
-
-```latex
-\datafield{Nombre}{Nombre Completo}&
-\datafield{Cargo}{Cargo}&
-\datafield{Fecha}{DD / MM / AAAA}\\
-```
 
 ### 4. Compilar
 
