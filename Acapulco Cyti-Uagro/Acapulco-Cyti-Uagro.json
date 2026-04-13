@@ -1,0 +1,46 @@
+{
+  "topicFilter": "skyalert/earthquake/anomalies",
+  "qos": 0,
+  "messages": [
+    {
+      "format": "json",
+      "topic": "skyalert/earthquake/anomalies",
+      "timestamp": 1774650633953,
+      "payload": {
+        "station_id": "AISensor003",
+        "event_type": "anomaly",
+        "message": "✅ ANOMALÍA FINALIZADA en 2026-03-27 22:30:34.690 (Duración: 4.41s, Max PGA: 174.80 Gals, PGA Final: 171.6 Gals)",
+        "pga_gals": 171.63,
+        "timestamp": "2026-03-27T22:30:34.690949+00:00",
+        "anomaly_active": false,
+        "coordinates": {
+          "lat": 16.835021,
+          "lon": -99.898257,
+          "elev": 10.0
+        },
+        "location_name": "Acapulco, Gro."
+      },
+      "qos": 0
+    },
+    {
+      "format": "json",
+      "topic": "skyalert/earthquake/anomalies",
+      "timestamp": 1774650629546,
+      "payload": {
+        "station_id": "AISensor003",
+        "event_type": "anomaly",
+        "message": "ANOMALIA DETECTADA + IA ACTIVADA en 2026-03-27 22:30:30.279 (PGA: 161.3 Gals)",
+        "pga_gals": 161.31,
+        "timestamp": "2026-03-27T22:30:30.280156+00:00",
+        "anomaly_active": true,
+        "coordinates": {
+          "lat": 16.835021,
+          "lon": -99.898257,
+          "elev": 10.0
+        },
+        "location_name": "Acapulco, Gro."
+      },
+      "qos": 0
+    }
+  ]
+}

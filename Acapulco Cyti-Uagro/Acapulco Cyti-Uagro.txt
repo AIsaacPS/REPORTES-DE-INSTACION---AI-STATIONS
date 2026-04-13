@@ -1,0 +1,107 @@
+# ============================================================
+#  DATOS DE INSTALACIÓN — SkyAlert RED · AI Station
+#  Archivo de insumo para generar el reporte LaTeX (.tex)
+#  Llenar todos los campos antes de compilar el reporte.
+# ============================================================
+
+# ── SITIO ────────────────────────────────────────────────────
+nombre_sitio        = Cyti-Uagro
+ciudad_estado       = Acapulco, Gro.
+direccion           = De las Colinas 37, Las Playas, 39390 Acapulco de Juárez, Gro.
+google_maps_url     = https://maps.app.goo.gl/MRohLhQKoLeVw6FEA
+latitud             = 16.835021
+longitud            = -99.898257
+altitud             = 11.0
+zona_sismica        = Tipo D
+
+# ── ESTACIÓN ─────────────────────────────────────────────────
+station_id          = AISensor003
+modelo_sensor       = AS-Explorer Board E-C111G
+fecha_instalacion   = 27/03/2026
+folio               = Ruta-Guerero-01-2026
+reporte_id          = 2026-Gro-001
+
+# ── AUTOR / EQUIPO ──────────────────────────────────────────
+autor               = Isaac Pérez
+apoyo               = Jorge Giles & Omar Barragán
+
+# ── CONTACTOS EN SITIO ──────────────────────────────────────
+contacto1_nombre    = M. C. Leopoldo Rodriguez 
+contacto1_cargo     = Director Cyti-Uagro
+contacto1_telefono  = +52 1 744 136 6063
+
+contacto2_nombre    = Ing. Ernesto Torrez
+contacto2_cargo     = Jefe de Redes Computacionales
+contacto2_telefono  = +52 1 55 1954 3344
+
+# ── EQUIPOS INSTALADOS ──────────────────────────────────────
+# Formato por línea: dispositivo | modelo | id_sn | ubicacion | propiedad | estado
+# Estados válidos: Activo, N/A, Pendiente, Fallo
+# Dejar líneas vacías si no aplica.
+equipo1 = GPU NVIDIA | Jetson Orin Nano | 003 | Site de redes | SkyAlert | Activo
+equipo2 = Sensor Sísmico principal | ASExplorer E-C111G | 0730B201 | Site de redes | SkyAlert | Activo
+equipo3 = Sensor Sísmico secundario | SKYACC | 003 | Site de redes | SkyAlert | Activo
+equipo4 = Módem / Router | Ninguno | -- | N/A | -- | N/A
+equipo5 = Antena Alta Ganancia | Ninguno | -- | N/A | -- | N/A
+equipo6 = Regulador de Voltaje | Koblenz |  | Site de redes | SkyAlert | Activo
+equipo7 = Bocina / Altavoz | Ninguna | -- | N/A | -- | N/A
+equipo8 = UPS / Batería | Ninguna | -- | N/A | -- | N/A
+
+# ── KPIs ─────────────────────────────────────────────────────
+dispositivos_activos = 5
+conectividad         = Fibra óptica
+resolucion_adc       = 24 bit
+latencia             = < 0.1s
+
+# ── DESCRIPCIONES DE FOTOS ──────────────────────────────────
+# img1 = Logo SkyAlert (no cambiar)
+img2_caption  = Fachada del Plantel Cyti Uagro
+img3_caption  = Interior del plantel Cyti Uagro
+img4_caption  = Lugar de instalaciòn (Centro de Computo)
+img5_caption  = Jetson y Arduino instalado
+img6_caption  = Sensor sísmico principal
+img7_caption  = Sensor sísmico secundario
+img8_caption  = Momento de instalaciòn
+img9_caption  = Momento de instalaciòn
+img10_caption = Pruebas de ruido sìsmico en sitio
+img12_caption = Formas de onda de aceleración registradas durante la medición de ruido sísmico en sitio.
+
+# ── PRUEBA MQTT ──────────────────────────────────────────────
+# Estos datos se toman del archivo JSON de prueba MQTT.
+# Si ya existe el .json en esta carpeta, se pueden copiar aquí.
+mqtt_broker          = xxxxxxxxxx.iot.us-east-1.amazonaws.com
+mqtt_mensajes        = 4 / 4 (100%)
+
+# ── OBSERVACIONES ────────────────────────────────────────────
+# Texto libre describiendo las condiciones de la instalación.
+observacion_general  = Estación sísmica inteligente instalada dentro del site de redes de la Facultad de Ciencias y Tecnologías de la Información de la Cyti Uagro con clima y acceso a fibra òptica.
+observacion_1        = La computadora central de la estaciòn, queda alimentada por la red de intenet local del centro de computo de la Cyti Uagro
+observacion_2        = Sensores sísmicos principal y secundario anclados al suelo con cuatro barrenos respectivamente.
+observacion_3        = Se observan condiciones ideales de ruido sísmico local para recibir datos de gran calidad.
+observacion_4        = Instalación de Estación sísmica que cumple los estándaresde calidad de SkyAlert 2026.
+
+# ── PRUEBAS REALIZADAS ──────────────────────────────────────
+# Formato: nombre_prueba | resultado | observacion
+# Resultados válidos: PASS, FAIL, Pendiente
+prueba1 = Encendido y arranque del sensor | PASS | Arranque sin errores
+prueba2 = Conectividad a internet | PASS | Señal estable
+prueba3 = Transmisión de señal sísmica | PASS | Latencia < 0.1 s
+prueba4 = Barrenado para gabinetes | PASS | Gabinetes fijados
+prueba5 = Detección de anomalía (AI Station) | PASS | IA_output, Zc, PGA
+prueba6 = Envío MQTT a AWS IoT Core | PASS | 4/4 mensajes (100%)
+prueba7 = Sincronización de reloj GPS | PASS | Drift < 10 ms
+prueba8 = Estándares SkyAlert 2026 | PASS | Criterios verificados
+
+# ── FIRMAS ───────────────────────────────────────────────────
+firma_instalador_nombre = Ing. Isaac Pérez
+firma_instalador_cargo  = Especialista en Sismología e Instrumentación Geofísica
+firma_instalador_fecha  = 27/03/2026
+
+firma_aliado_nombre     = M. C. Leopoldo Rodriguez
+firma_aliado_cargo      = Director Genral de Cyti-Uagro
+firma_aliado_fecha      = 27/03/2026
+
+# ── APOYO EN INSTALACIÓN ────────────────────────────────────
+# Formato: nombre | cargo | fecha
+apoyo1 = Jorge Giles | Gerente de Operaciones | 27/03/2026
+apoyo2 = Omar Barragán | Desarrollador Full Stack | 27/03/2026
